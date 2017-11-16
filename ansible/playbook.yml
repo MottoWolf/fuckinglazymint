@@ -1,0 +1,19 @@
+- name: Install nginx
+  hosts: localhost
+  become: true
+  
+  tasks:
+
+  - name: Add some repo
+    yum:
+      name: epel-release
+      state: present
+    - tags:
+	- vim
+
+  - name: Install someapp
+    yum:
+      name: libnfc
+      state: present
+    - tags:
+	- vim
