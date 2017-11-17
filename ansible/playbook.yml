@@ -8,12 +8,12 @@
     yum:
       name: epel-release
       state: present
-    - tags:
-	- vim
+      tags:
+      - vim
 
   - name: Install someapp
     yum:
       name: libnfc
       state: present
-    - tags:
-	- vim
+      tags:
+      - vim
