@@ -73,8 +73,9 @@ do
     if [[ ${opts[opt]} ]]
     then
 	 selected=$(printf '%s\n' "${options[opt - 1]}") 
+	  echo ansible-playbook ansible/playbook.yml --tags $selected | rev | cut -c 4- | re
           ansible-playbook ansible/playbook.yml --tags "$selected" | rev | cut -c 4- | rev
-	  echo ansible-playbook ansible/playbook.yml --tags $selected | rev | cut -c 4- | rev
+v
     fi
 done
 #ansible-playbook playbook.yml --tags 
