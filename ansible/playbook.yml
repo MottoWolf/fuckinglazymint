@@ -1,4 +1,4 @@
-- name: Install nginx
+- name: Install vim
   hosts: localhost
   become: true
   
@@ -11,9 +11,9 @@
       tags:
       - vim
 
-  - name: Install someapp
+  - name: Install vim
     yum:
-      name: libnfc
+      name: vim
       state: present
       tags:
       - vim
