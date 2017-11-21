@@ -1,19 +1,61 @@
-- name: Install vim
-  hosts: localhost
-  become: true
-  
-  tasks:
-
-  - name: Add some repo
-    yum:
-      name: epel-release
-      state: present
-      tags:
-      - vim
-
-  - name: Install vim
-    yum:
-      name: vim
-      state: present
-      tags:
-      - vim
+--- 
+- hosts: localhost
+  roles:
+    - chrome
+  tags:
+    - chrome
+#
+- hosts: localhost
+  roles:
+    - cinnamon
+  tags:
+    - cinnamon
+#
+- hosts: localhost
+  roles:
+    - git
+  tags:
+    - git
+#
+- hosts: localhost
+  roles:
+    - hangups
+  tags:
+    - hangups
+#
+- hosts: localhost
+  roles:
+    - keepassX
+  tags:
+    - keepassX
+#
+- hosts: localhost
+  roles:
+    - spotify
+  tags:
+    - spotify
+#
+- hosts: localhost
+  roles:
+    - steam
+  tags:
+    - steam
+#
+- hosts: localhost
+  roles:
+    - terminator
+  tags:
+    - terminator
+#
+- hosts: localhost
+  roles:
+    - vim
+  tags:
+    - vim
+#
+- hosts: localhost
+  roles:
+    - virtualbox
+  tags:
+    - virtualbox
+#
