@@ -1,4 +1,2 @@
 ---
 # vars file for vim
-- hosts: localhost
-sudo: yes

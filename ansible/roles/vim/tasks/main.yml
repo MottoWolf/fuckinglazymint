@@ -1,18 +1,8 @@
 ---
 # tasks file for vim
-  tasks:
-
-  - name: Add some repo
-    yum:
-      name: epel-release
-      state: present
-      tags:
-      - vim
-
-  - name: Install vim
-    yum:
-      name: vim
-      state: present
-      tags:
-      - vim
-~             
+- name: INSTALL VIM
+  #apt: name={{ item.pkg }}
+  apt: name={{ item.pkg }} state=latest update_cache=yes
+  with_items:
+    - { pkg: 'vim' }
+  tags: vim
