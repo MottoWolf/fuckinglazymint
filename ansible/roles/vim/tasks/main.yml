@@ -1,8 +1,0 @@
----
-# tasks file for vim
-- name: INSTALL VIM
-  #apt: name={{ item.pkg }}
-  apt: name={{ item.pkg }} state=latest update_cache=yes
-  with_items:
-    - { pkg: 'vim' }
-  tags: vim
