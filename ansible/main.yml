@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  gather_facts: true
+  become: true
+  connection: local 
+  roles:
+  - chrome
+  - neovim
+  - spotify
+    #  - terminator
+  - virtualbox
+    # - zsh

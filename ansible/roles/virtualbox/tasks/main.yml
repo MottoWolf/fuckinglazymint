@@ -1,0 +1,68 @@
+---
+## We update our cache here in case we are removing, reinstalling or purging
+
+- name: update apt cache
+  apt: update_cache=yes cache_valid_time=43200
+  tags: [ 'packages', 'virtualbox' ]
+
+## Confirm that the value of virtualbox_state is valid
+
+- fail: msg="virtualbox_state == {{ virtualbox_state }}. It must be equal present, absent, reinstalled or purged."
+  when: virtualbox_state != "present" and virtualbox_state != "purged" and virtualbox_state != "reinstalled" and virtualbox_state != "absent"
+  tags: [ 'packages', 'virtualbox' ]
+
+## Removing Virtualbox
+
+- name: Remove VirtualBox
+  apt: pkg='{{ virtualbox_apt_pkg }}' state=absent purge=no
+  when: virtualbox_state == "absent" or virtualbox_state == "reinstalled"
+  tags: [ 'packages', 'virtualbox' ]
+
+- name: Remove VirtualBox and purge the Virtualbox configuration files
+  apt: pkg='{{ virtualbox_apt_pkg }}' state=absent purge=yes
+  when: virtualbox_state == "purged"
+  tags: [ 'packages', 'virtualbox' ]
+
+- name: "Remove virtualbox oracle apt key 2"
+  apt_key: id="98AB5139" state=absent
+  when: virtualbox_state == "absent" or virtualbox_state == "purged" or virtualbox_state == "reinstalled"
+  tags: [ 'packages', 'virtualbox' ]
+
+- name: "Remove virtualbox oracle apt key 2"
+  apt_key: id="2980AECF" state=absent
+  when: virtualbox_state == "absent" or virtualbox_state == "purged" or virtualbox_state == "reinstalled"
+  tags: [ 'packages', 'virtualbox' ]
+
+- name: Remove the VirtualBox APT repositories
+  apt_repository: repo="{{ virtualbox_apt_repo }}" state=absent mode="0644"
+  when: virtualbox_state == "absent" or virtualbox_state == "purged" or virtualbox_state == "reinstalled"
+  tags: [ 'packages', 'virtualbox' ]
+
+## Installing Virtualbox
+
+- debug: var=virtualbox_state
+
+- name: "Add oracle virtualbox oracle apt key 1"
+  apt_key: url="{{ virtualbox_apt_key_url_1 }}" state=present
+  when: virtualbox_state == "present" or virtualbox_state == "reinstalled"
+  tags: [ 'packages', 'virtualbox' ]
+
+- name: "Add oracle virtualbox oracle apt key 2"
+  apt_key: url="{{ virtualbox_apt_key_url_2 }}" state=present
+  when: virtualbox_state == "present" or virtualbox_state == "reinstalled"
+  tags: [ 'packages', 'virtualbox' ]
+
+- name: Add virtualbox repository to sources
+  apt_repository: repo="{{ virtualbox_apt_repo }}" state=present mode="0644"
+  when: virtualbox_state == "present" or virtualbox_state == "reinstalled"
+  tags: [ 'packages', 'virtualbox' ]
+
+- name: Install virtualbox
+  apt: name="{{ virtualbox_apt_pkg }}" state=present update_cache=yes
+  when: virtualbox_state == "present" or virtualbox_state == "reinstalled"
+  tags: [ 'packages', 'virtualbox' ]
+
+- name: Install virtualbox dkms package
+  apt: name="{{ virtualbox_apt_dkms_pkg }}" state=present
+  when: virtualbox_install_dkms and virtualbox_state == "present" or virtualbox_state == "reinstalled"
+  tags: virtualbox_dkms

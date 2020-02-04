@@ -1,0 +1,39 @@
+---
+- name: Install neovim dependencies
+  become: true
+  apt:
+    name: "{{ python_required_packages }}"
+    state: present
+
+- name: Install you complete me dependencies
+  become: true
+  apt:
+    name: "{{ ycm_packages }}"
+    state: present
+
+- name: Add neovim ppa 
+  become: yes
+  apt_repository:
+    repo: deb http://ppa.launchpad.net/neovim-ppa/stable/ubuntu bionic main
+    state: present
+    filename: neovim
+
+- name: Add neovim ppa source
+  become: yes
+  apt_repository:
+    repo: deb-src http://ppa.launchpad.net/neovim-ppa/stable/ubuntu bionic main
+    state: present
+    filename: neovim
+
+- name: Install neovim
+  apt:
+    name: neovim
+    state: latest
+
+- name: use nvim for vim
+  alternatives: name=vim path=/usr/bin/nvim
+
+- name: use nvim for editor
+  alternatives: name=editor path=/usr/bin/nvim
+  become: true
+  become_user: root

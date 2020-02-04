@@ -1,0 +1,9 @@
+---
+- name: themes | create
+  copy:
+    content: "{{ oh_my_zsh_themes[item.theme] }}"
+    dest: "~{{ item.name }}/.oh-my-zsh/themes/{{ item.theme }}.zsh-theme"
+    owner: "{{ item.name }}"
+  when: item.theme is defined
+  with_items:
+    - "{{ oh_my_zsh_users }}"

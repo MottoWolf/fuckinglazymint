@@ -1,0 +1,23 @@
+---
+- name: get google key
+  become: yes
+  apt_key:
+    url: "https://dl-ssl.google.com/linux/linux_signing_key.pub"
+    state: present
+
+- name: add gogle repository
+  become: yes
+  apt_repository:
+    repo: deb http://dl.google.com/linux/chrome/deb/ stable main
+    state: present
+    filename: google
+
+- name: Run apt-get update
+  become: yes
+  apt:
+    update_cache: yes
+
+- name: Install chrome
+  apt:
+    name: google-chrome-stable
+    state: latest
