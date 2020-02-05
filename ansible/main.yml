@@ -7,6 +7,6 @@
   - chrome
   - neovim
   - spotify
-    #  - terminator
+  - terminator
   - virtualbox
-    # - zsh
+  - zsh
