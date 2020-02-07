@@ -1,7 +1,7 @@
 ---
 - name: Add repository
   become: yes
-- apt_repository:
+  apt_repository:
     repo: ppa:linuxuprising/shutter
 
 - name: Run apt-get update
