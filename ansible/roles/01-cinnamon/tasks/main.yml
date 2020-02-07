@@ -2,8 +2,10 @@
 - name: Copy config
   template:
     src: templates/cinnamon_config.j2
-    dest: ~/.cinnamon/cinnamon_config.dconf
+    dest: ~/cinnamon_config.dconf
     mode: '0664'
 
 - name: Restore config
-  command: dconf load /org/cinnamon/ < ~/.cinnamon/cinnamon_config.dconf
+  shell: dconf load /org/cinnamon/ < ~/cinnamon_config.dconf
+  args:
+    executable: /bin/bash

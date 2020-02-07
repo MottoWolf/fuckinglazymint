@@ -3,11 +3,7 @@
 # Pre check
 sudo apt-get install python -y
 sudo apt install software-properties-common
-
-# Ansible Install
 sudo add-apt-repository ppa:ansible/ansible -y
-
-# Git Install
 sudo add-apt-repository ppa:git-core/ppa -y
 
 # Install
