@@ -13,6 +13,7 @@
     filename: spotify
 
 - name: Install Spotify
+  become: yes
   apt:
     name: spotify-client
     state: latest

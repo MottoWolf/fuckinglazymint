@@ -26,6 +26,7 @@
     filename: neovim
 
 - name: Install neovim
+  become: yes
   apt:
     name: neovim
     state: latest
