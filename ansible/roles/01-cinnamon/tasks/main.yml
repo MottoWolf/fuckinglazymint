@@ -1,4 +1,15 @@
 ---
+- name: Ensure themes directory exist
+  file:
+    path: ~/.themes
+    state: directory
+
+- name: Download and unpack theme
+  unarchive:
+    src: https://cinnamon-spices.linuxmint.com/files/themes/Numix-Cinnamon-Transparent.zip
+    dest: ~/.themes
+    remote_src: yes
+
 - name: Copy config
   template:
     src: templates/cinnamon_config.j2
