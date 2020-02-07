@@ -1,8 +1,8 @@
 ---
 - name: Add key
+  become: yes
   apt_key:
-    keyserver: keyserver.ubuntu.com
-    id: 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
+    url: "https://download.spotify.com/debian/pubkey.gpg"
     state: present
 
 - name: Add repository
@@ -12,7 +12,12 @@
     state: present
     filename: spotify
 
-- name: Install Spotify
+- name: Run apt-get update
+  become: yes
+  apt:
+    update_cache: yes
+
+- name: Install
   become: yes
   apt:
     name: spotify-client
