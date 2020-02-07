@@ -1,1 +1,18 @@
 ---
+- name: Install Terminator
+  become: yes
+  apt:
+    name: terminator
+    state: latest
+    update_cache: yes
+
+- name: Ensure Terminator config directory exist
+  file:
+    path: ~/.config/terminator
+    state: directory
+
+- name: Copy Terminator config
+  template:
+    src: templates/config.j2
+    dest: ~/.config/terminator/config
+    mode: '0664'
