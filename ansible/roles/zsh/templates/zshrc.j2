@@ -51,7 +51,7 @@ ZSH_THEME="{{ oh_my_zsh_theme }}"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=({{ oh_my_zsh_plugins}})
+plugins=({{ oh_my_zsh.plugins | default(oh_my_zsh_plugins) | join(' ') }})
 
 source $ZSH/oh-my-zsh.sh
 
