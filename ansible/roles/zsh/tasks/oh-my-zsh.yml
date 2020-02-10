@@ -1,0 +1,35 @@
+---
+- name: Install oh-my-zsh
+  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+- name: Install powerlevel9k
+  git:
+    repo: https://github.com/bhilburn/powerlevel9k.git
+    dest: ~/.oh-my-zsh/custom/themes/powerlevel9k
+
+- name: Install Awesome-Powerline Fonts (1/2 copy repo)
+  git:
+    repo: https://github.com/gabrielelana/awesome-terminal-fonts.git
+    dest: /tmp/awesome-terminal-fonts
+
+- name: Install Awesome-Powerline Fonts (2/2 copy fonts)
+  copy:
+    src: /tmp/awesome-terminal-fonts/build/*
+    dest: ~/.fonts
+    mode: '0644'
+
+#- name: Install Powerline Font
+#  get_url:
+#    url: https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+#    dest: ~/.local/share/fonts/
+#    mode: '0664'
+
+- name: Update font cache
+  become: yes
+  shell: fc-cache -vf ~/.local/share/fonts/
+
+#- name: Install fontconfig file
+#  get_url:
+#    url: https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+#    dest: ~/.config/fontconfig/conf.d/
+#    mode: '0664'

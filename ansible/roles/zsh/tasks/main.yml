@@ -1,12 +1,27 @@
 ---
-- import_tasks: packages.yml
-  tags: [oh-my-zsh, oh-my-zsh-packages]
+- name: Install zsh
+  apt:
+    name: zsh
+    state: present
 
-- import_tasks: users.yml
-  tags: [oh-my-zsh, oh-my-zsh-users]
+- name: Include oh-my-zsh
+  include: oh-my-zsh.yml
 
-- import_tasks: themes.yml
-  tags: [oh-my-zsh, oh-my-zsh-themes]
+- name: install autosuggestion plugin
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    dest: ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-- import_tasks: plugins.yml
-  tags: [oh-my-zsh, oh-my-zsh-plugins]
+- name: Copy zsh config
+  template:
+    src: templates/zshrc.j2
+    dest: ~/.zshrc
+    mode: '0644'
+
+- name: Set zsh as default shell
+  user:
+    name: "{{ zsh_user }}"
+    shell: /bin/zsh
+  become: true
+  when: not zsh_shared
+
