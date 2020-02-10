@@ -1,6 +1,7 @@
 ---
 - name: Install oh-my-zsh
   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  ignore_errors: yes
 
 - name: Install powerlevel9k
   git:
@@ -14,8 +15,8 @@
 
 - name: Install Awesome-Powerline Fonts (2/2 copy fonts)
   copy:
-    src: /tmp/awesome-terminal-fonts/build/*
-    dest: ~/.fonts
+    src: /tmp/awesome-terminal-fonts/build/
+    dest: ~/.fonts/
     mode: '0644'
 
 #- name: Install Powerline Font

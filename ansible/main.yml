@@ -6,8 +6,9 @@
 ##    - 01-cinnamon
 ##    - chrome
 #    - neovim
+#    - shutter
 #    - spotify
-##    - terminator
+#    - 99-symbolic-links
+    - terminator
 #    - virtualbox
-#    - zsh
-    - shutter
+    - zsh
