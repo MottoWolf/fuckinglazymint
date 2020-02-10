@@ -11,7 +11,7 @@
 - name: install autosuggestion plugin
   git:
     repo: https://github.com/zsh-users/zsh-autosuggestions
-    dest: ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    dest: ~/.zsh/zsh-autosuggestions
 
 - name: Copy zsh config
   template:
