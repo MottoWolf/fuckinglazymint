@@ -9,10 +9,12 @@ export TERM="xterm-256color"
 
 # Set name of the theme to load
 ZSH_THEME="{{ oh_my_zsh_theme }}"
-  POWERLEVEL9K_MODE='awesome-fontconfig'
-  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir virtualenv vcs)
-  POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(custom_exec_time status background_jobs root_indicator)
-  POWERLEVEL9K_PYTHON_ICON=" "
+    POWERLEVEL9K_MODE='awesome-fontconfig'
+    POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir virtualenv aws vcs)                    
+    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(battery)       
+    POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="↳ "
+    POWERLEVEL9K_PYTHON_ICON=" "
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -97,5 +99,7 @@ alias cp='cp -i'
 alias ln='ln -i'
 alias df='df -H'
 alias du='du -ch'
+alias tiempo="curl -s 'wttr.in/{Madrid,Getafe}?format=3'"
+
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
