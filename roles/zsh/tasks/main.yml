@@ -19,10 +19,9 @@
     dest: ~/.zshrc
     mode: '0644'
 
-- name: Set zsh as default shell
-  user:
-    name: "{{ zsh_user }}"
-    shell: /bin/zsh
-  become: true
-  when: not zsh_shared
+#- name: Set zsh as default shell
+#  user:
+#    name: "{{ zsh_user }}"
+#    shell: /bin/zsh
+#  when: not zsh_shared
 
