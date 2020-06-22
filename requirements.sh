@@ -12,4 +12,4 @@ sudo apt install git -y
 sudo apt-get install git-core -y
 sudo apt install ansible -y
 sudo apt-get install -y dconf-editor
-sudo apt-get install -y dconf-rools
+sudo apt-get install -y dconf-tools
