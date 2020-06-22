@@ -25,18 +25,30 @@
     dest: ~/.fonts/
     mode: '0644'
 
-#- name: Install Powerline Font
-#  get_url:
-#    url: https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
-#    dest: ~/.local/share/fonts/
-#    mode: '0664'
+- name: Create font dir
+  file:
+    path: ~/.local/share/fonts/
+    state: directory
+    mode: '0755'
+
+- name: Install Powerline Font
+  get_url:
+    url: https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+    dest: ~/.local/share/fonts/
+    mode: '0664'
 
 - name: Update font cache
   become: yes
   shell: fc-cache -vf ~/.local/share/fonts/
 
-#- name: Install fontconfig file
-#  get_url:
-#    url: https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
-#    dest: ~/.config/fontconfig/conf.d/
-#    mode: '0664'
+- name: Create fontconfig dir
+  file:
+    path: ~/.config/fontconfig/conf.d/
+    state: directory
+    mode: '0755'
+
+- name: Install fontconfig file
+  get_url:
+    url: https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+    dest: ~/.config/fontconfig/conf.d/
+    mode: '0664'
