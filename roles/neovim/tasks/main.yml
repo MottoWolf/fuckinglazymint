@@ -11,20 +11,6 @@
     name: "{{ ycm_packages }}"
     state: present
 
-- name: Add ppa 
-  become: yes
-  apt_repository:
-    repo: deb http://ppa.launchpad.net/neovim-ppa/stable/ubuntu bionic main
-    state: present
-    filename: neovim
-
-- name: Add ppa source
-  become: yes
-  apt_repository:
-    repo: deb-src http://ppa.launchpad.net/neovim-ppa/stable/ubuntu bionic main
-    state: present
-    filename: neovim
-
 - name: Install
   become: yes
   apt:

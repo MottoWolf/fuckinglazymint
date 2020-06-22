@@ -3,12 +3,11 @@
   gather_facts: true
   connection: local 
   roles:
-    - 01-cinnamon
+    - cinnamon
     - chrome
-#    - neovim
-#    - shutter
+    - neovim
+    - shutter
     - spotify
-#    - 99-symbolic-links
     - terminator
 #    - virtualbox
     - zsh
